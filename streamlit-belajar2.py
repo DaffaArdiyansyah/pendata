@@ -14,18 +14,35 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Melakukan Pembacaan Judul (Introduction)
-st.title("Prediksi Kanker Payudara")
+st.title("Aplikasi Prediksi Kanker Payudara")
 st.write("##### NAMA : Daffa Ardiyansyah")
-st.write("##### NIM : 210411100134")
+st.write("##### NIM  : 210411100134")
 st.write("##### KELAS : PENAMBANGAN DATA B ")
 
 
 # Tampilan Aturan Navbarnya 
-preprocessing, modeling, implementasi = st.tabs([ "Preprocessing", "Modeling", "Implementasi"])
+data, preprocessing, modeling, implementasi = st.tabs([ "Data", "Preprocessing", "Modeling", "Implementasi"])
 
 #Data Yang digunakan
 df = pd.read_csv('https://raw.githubusercontent.com/DaffaArdiyansyah/pendata/main/docs/Breast_cancer_data.csv')
 
+
+#Data
+with data:
+    st.header("Tentang Dataset")
+    st.subheader("Aplikasi :")
+    st.markdown("Aplikasi ini Digunakan untuk melakukan prediksi untuk penyakit kanker payudara dengan cara menginputkan parameter mean radius, mean texture, mean perimeter, mean area,Dan mean smoothness")
+    
+    st.subheader("Sumber Data :")
+    st.markdown("Data di ambil dari website open data yaitu kaggle")
+    st.markdown("Link : https://www.kaggle.com/datasets/merishnasuwal/breast-cancer-prediction-dataset")
+
+    st.subheader("Tipe Data :")
+    st.markdown("tipe Data pada dataset merupakan tipe data numerik, dan untuk labelnya (diagnosis) tipe data biner")
+    st.dataframe(df)
+
+    st.subheader("Tentang Data :")
+    st.markdown("Di seluruh dunia, kanker payudara adalah jenis kanker yang paling umum pada wanita dan tertinggi kedua dalam hal angka kematian. Diagnosis kanker payudara dilakukan ketika ditemukan benjolan abnormal (dari pemeriksaan sendiri atau rontgen) atau setitik kecil dari kalsium terlihat (pada x-ray). Setelah benjolan yang mencurigakan ditemukan, dokter akan melakukan diagnosa untuk menentukan apakah itu kanker dan, jika demikian, apakah sudah menyebar ke bagian tubuh yang lain. Dataset kanker payudara ini dibuat dari University of Wisconsin Hospitals, Madison dari Dr. William H. Wolberg.")    
 
 
 # Preprocessing
@@ -43,7 +60,7 @@ with preprocessing:
     feature_names = X.columns.copy()
     scaled_features = pd.DataFrame(scaled, columns=feature_names)
 
-    st.subheader("Hasil Normalisasi Data dari Data Human Stress")
+    st.subheader("Normalisasi Data Diagnosa kenker payudara dengan MinMaxSxaler")
     st.write(scaled_features)
 
 
@@ -121,12 +138,12 @@ with modeling:
 with implementasi :
  with st.form("Daffa_form"):
     st.subheader('IMPLEMENTASI PREDIKSI KANKER PAYUDARA)')
-    st.write("Masukkan nilai-nilai yang akan diprediksi:")  
-    mean_radius  = st.number_input('Masukkan nilai mean radius') # sesuai data set
-    mean_texture  = st.number_input('Masukkan nilai mean texture')
-    mean_perimeter  = st.number_input('Masukkan nlai mean perimeter')
-    mean_area  = st.number_input('Masukkan nilai mean area')
-    mean_smoothness  = st.number_input('Masukkan nilai mean smoothness')
+    st.write("Inputkan nilai-nilai yang akan diprediksi:")  
+    mean_radius  = st.number_input('Inputkan nilai mean radius') # sesuai data set
+    mean_texture  = st.number_input('Inputkan nilai mean texture')
+    mean_perimeter  = st.number_input('Inputkan nlai mean perimeter')
+    mean_area  = st.number_input('Inputkan nilai mean area')
+    mean_smoothness  = st.number_input('Inputkan nilai mean smoothness')
    
 
 
